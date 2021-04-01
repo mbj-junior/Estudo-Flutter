@@ -2,6 +2,8 @@ import 'package:bitbank/models/transferencia.dart';
 import 'package:bitbank/screens/transferencia/formulario.dart';
 import 'package:flutter/material.dart';
 
+const _tituloAppBar = 'Transferência';
+
 class ListaTransferencias extends StatefulWidget {
   final List<Transferencia> _transferencias = [];
 
@@ -16,7 +18,7 @@ class ListaTransferenciasState extends State<ListaTransferencias> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Transferência'),
+        title: Text(_tituloAppBar),
       ),
       body: ListView.builder(
         itemCount: widget._transferencias.length,
@@ -33,18 +35,22 @@ class ListaTransferenciasState extends State<ListaTransferencias> {
             return FormularioTransferencia();
           }));
           future.then((transferenciaRecebida) {
-            Future.delayed(Duration(seconds: 2), () {
-              if (transferenciaRecebida != null) {
-                setState(() {
-                  debugPrint('$transferenciaRecebida');
-                  widget._transferencias.add(transferenciaRecebida);
-                });
-              }
+            Future.delayed(Duration(seconds: 1), () {
+              _atualiza(transferenciaRecebida);
             });
           });
         },
       ),
     );
+  }
+
+  void _atualiza(Transferencia transferenciaRecebida) {
+    if (transferenciaRecebida != null) {
+      setState(() {
+        debugPrint('$transferenciaRecebida');
+        widget._transferencias.add(transferenciaRecebida);
+      });
+    }
   }
 }
 
