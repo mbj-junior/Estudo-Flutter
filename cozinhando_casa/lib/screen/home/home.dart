@@ -1,6 +1,7 @@
 import 'dart:convert';
-import '../../model/receita.dart';
 import 'package:flutter/material.dart';
+import 'package:cozinhando_casa/model/receita.dart';
+import 'package:cozinhando_casa/screen/detalhes/detalhes.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -41,20 +42,30 @@ class HomeState extends State<Home> {
   }
 
   Widget _construirCard(titulo, foto) {
-    return SizedBox(
-      height: 300,
-      child: Card(
-        margin: EdgeInsets.all(16),
-        child: Column(
-          children: <Widget>[
-            Stack(
-              children: <Widget>[
-                _construirImagens(foto),
-                _contruirGradienteCard(),
-                _construirTextoCard(titulo),
-              ],
-            )
-          ],
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Detalhes(),
+          ),
+        );
+      },
+      child: SizedBox(
+        height: 300,
+        child: Card(
+          margin: EdgeInsets.all(16),
+          child: Column(
+            children: <Widget>[
+              Stack(
+                children: <Widget>[
+                  _construirImagens(foto),
+                  _contruirGradienteCard(),
+                  _construirTextoCard(titulo),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
