@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:convert';
 import '../../model/receita.dart';
+import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -29,10 +29,13 @@ class HomeState extends State<Home> {
         List<dynamic> receitas = json.decode(
           snapshot.data.toString(),
         );
-        return ListView.builder(itemBuilder: (BuildContext context, int index){
-          Receita receita = Receita.fromJson(receitas[index]);
-          return _construirCard(receita.titulo, receita.foto);
-        },itemCount: receitas == null ? 0 : receitas.length,);
+        return ListView.builder(
+          itemBuilder: (BuildContext context, int index) {
+            Receita receita = Receita.fromJson(receitas[index]);
+            return _construirCard(receita.titulo, receita.foto);
+          },
+          itemCount: receitas == null ? 0 : receitas.length,
+        );
       },
     );
   }
@@ -47,6 +50,7 @@ class HomeState extends State<Home> {
             Stack(
               children: <Widget>[
                 _construirImagens(foto),
+                _contruirGradienteCard(),
                 _construirTextoCard(titulo),
               ],
             )
@@ -62,7 +66,20 @@ class HomeState extends State<Home> {
       left: 10,
       child: Text(
         titulo,
-        style: TextStyle(fontSize: 20),
+        style: TextStyle(fontSize: 20, color: Colors.white),
+      ),
+    );
+  }
+
+  Widget _contruirGradienteCard() {
+    return Container(
+      height: 268,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: FractionalOffset.topCenter,
+          end: FractionalOffset.bottomCenter,
+          colors: [Colors.transparent, Colors.deepOrange.withOpacity(0.7)],
+        ),
       ),
     );
   }
