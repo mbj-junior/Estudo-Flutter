@@ -49,4 +49,16 @@ void main() {
     default:
       print("PADRÃO");
   }
+
+  // 4 - Estruturas de repetições
+  print("for");
+  for (var i = 0; i <= 10; i++) {
+    print(i);
+  }
+  print("while");
+  int contador = 10;
+  while (contador != -10) {
+    contador--;
+    print(contador);
+  }
 }
