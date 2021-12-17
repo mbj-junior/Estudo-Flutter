@@ -18,7 +18,6 @@ void main() {
   //com ? a variável pode aceitar null
   String? nome;
   nome = "ABC";
-  nome = null;
   // com ! não aceita que seja null
   print(nome!);
 
@@ -26,4 +25,28 @@ void main() {
   late String sobrenome;
   sobrenome = "não é null";
   print(sobrenome);
+
+  // 3 - IF e SWITCH
+  bool seguirEmFrente = false;
+
+  if (seguirEmFrente) {
+    print("andar");
+  } else {
+    print("parar");
+  }
+
+  int valorInt = 5;
+  switch (valorInt) {
+    case 0:
+      print("ZERO");
+      break;
+    case 1:
+      print("UM");
+      break;
+    case 2:
+      print("DOIS");
+      break;
+    default:
+      print("PADRÃO");
+  }
 }
