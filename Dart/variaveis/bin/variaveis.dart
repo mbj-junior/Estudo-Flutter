@@ -76,6 +76,16 @@ void main() {
   Carro gol = Carro("Gol");
 
   print(mercedes.valorDoCarro);
+
+  // 7 - Abstração, Herança e Polimorfismo
+  Deivid deivid = Deivid();
+  print(deivid.falar());
+
+  Pagamento pagamento = PagarComBoleto();
+  pagamento.pagar();
+
+  pagamento = PagarComPix();
+  pagamento.pagar();
 }
 
 // 5 - Métodos e classes
@@ -107,4 +117,50 @@ class Carro {
   void setValue(int valor) => _valor = valor;
 
   Carro(this.modelo);
+}
+
+// 7 - Abstração, Herança e Polimorfismo
+
+abstract class Pagamento {
+  void pagar();
+}
+
+class PagarComBoleto implements Pagamento {
+  @override
+  void pagar() {
+    print('Pagando com Boleto');
+  }
+}
+
+class PagarComPix implements Pagamento {
+  @override
+  void pagar() {
+    print('Pagando com PIX');
+  }
+}
+
+class Pai {
+  String falar() {
+    return "girias";
+  }
+}
+
+class Deivid extends Pai {}
+
+abstract class Pessoa {
+  String comunicar();
+}
+
+class PessoaET implements Pessoa {
+  @override
+  String comunicar() {
+    return "Olá mundo";
+  }
+}
+
+class PessoaNaoET implements Pessoa {
+  @override
+  String comunicar() {
+    return "Bom dia";
+  }
 }
