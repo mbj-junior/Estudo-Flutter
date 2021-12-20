@@ -1,7 +1,7 @@
 import 'core.dart';
 
 void main() {
-   CreateCore core = CreateCore();
+  CreateCore core = CreateCore();
 
   try {
     core.start();

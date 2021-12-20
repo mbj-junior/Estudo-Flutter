@@ -2,12 +2,10 @@ import 'database.dart';
 import 'webserver.dart';
 
 class CreateCore {
-
-  
   Database database = Database();
   Webserver webserver = Webserver();
 
- void start() {
+  void start() {
     print("> [core] Starting...");
     database.start();
     webserver.start();
@@ -20,5 +18,4 @@ class CreateCore {
     database.stop();
     print("> [core] Stopping done!");
   }
-
 }
