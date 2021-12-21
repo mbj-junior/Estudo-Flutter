@@ -28,9 +28,13 @@ class ContaCorrenteRepository {
 }
 
 class Contacorrente2 {
-  ContaCorrenteRepository _repository = new ContaCorrenteRepository();
+  ContaCorrenteRepository repository = ContaCorrenteRepository();
 
-  validaContaExiste(){
+  validaContaExiste() {
     // logica crucial de negocio
+  }
+
+  void salvarModificacoes() {
+    repository.save();
   }
 }
