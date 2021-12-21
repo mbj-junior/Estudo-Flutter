@@ -23,6 +23,7 @@ um Produto não deve ser capaz de exercer controle sobreo banco de dados, um pac
 
 */
 
+//Modo Correto
 class ContaCorrenteRepository {
   void save() => print("salvando no db....");
 }
