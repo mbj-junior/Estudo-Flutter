@@ -1,9 +1,9 @@
 // LSP - Os subtipos devem ser substituíveis pelo seus tipos base
 
 abstract class Conta {
-  void depositar(int valor) => print("depositando...");
-  void transferir(int valor) => print("tranferindo...");
-  void realizarEmprestimo() => print("realizando emprestimo...");
+  void depositar(int valor);
+  void transferir(int valor);
+  void realizarEmprestimo();
 }
 
 class ContaCorrente implements Conta {
