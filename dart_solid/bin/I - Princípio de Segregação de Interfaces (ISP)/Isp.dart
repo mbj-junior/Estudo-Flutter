@@ -1,5 +1,4 @@
-// ISP - Muitas interfazer especificas são melhores que uma geral
-
+/*ISP - Muitas interfazer especificas são melhores que uma geral*/
 abstract class Conta {
   void depositar(int valor);
   void transferir(int valor);
@@ -68,8 +67,7 @@ class ContaPoupanca2 extends Conta2 {
   void depositar(int valor) => "Deposito de $valor";
 }
 
-class ContaConjunto extends Conta2{
+class ContaConjunto extends Conta2 {
   @override
   void depositar(int valor) => "Deposito de $valor";
-
 }
