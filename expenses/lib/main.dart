@@ -14,8 +14,6 @@ class ExpensesApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: MyHomePage(),
       theme: ThemeData(
-          primarySwatch: Colors.purple,
-          accentColor: Colors.amber[700],
           fontFamily: 'Quicksand',
           textTheme: ThemeData.light().textTheme.copyWith(
               headline6: TextStyle(
@@ -23,11 +21,15 @@ class ExpensesApp extends StatelessWidget {
                   fontSize: 18,
                   fontWeight: FontWeight.bold)),
           appBarTheme: AppBarTheme(
-              textTheme: ThemeData.light().textTheme.copyWith(
+              toolbarTextStyle: ThemeData.light().textTheme.copyWith(
                   headline6: TextStyle(
                       fontFamily: 'OpenSans',
                       fontSize: 20,
-                      fontWeight: FontWeight.bold)))),
+                      fontWeight: FontWeight.bold)).bodyText2, titleTextStyle: ThemeData.light().textTheme.copyWith(
+                  headline6: TextStyle(
+                      fontFamily: 'OpenSans',
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold)).headline6), colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple).copyWith(secondary: Colors.amber[700])),
     );
   }
 }
