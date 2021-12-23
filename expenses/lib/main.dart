@@ -2,6 +2,7 @@ import 'dart:math';
 import 'models/transaction.dart';
 import 'package:flutter/material.dart';
 import 'components/transaction_list.dart';
+import 'package:expenses/components/chart.dart';
 import 'package:expenses/models/transaction.dart';
 import 'package:expenses/components/transaction_form.dart';
 
@@ -21,15 +22,24 @@ class ExpensesApp extends StatelessWidget {
                   fontSize: 18,
                   fontWeight: FontWeight.bold)),
           appBarTheme: AppBarTheme(
-              toolbarTextStyle: ThemeData.light().textTheme.copyWith(
-                  headline6: TextStyle(
-                      fontFamily: 'OpenSans',
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold)).bodyText2, titleTextStyle: ThemeData.light().textTheme.copyWith(
-                  headline6: TextStyle(
-                      fontFamily: 'OpenSans',
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold)).headline6), colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple).copyWith(secondary: Colors.amber[700])),
+              toolbarTextStyle: ThemeData.light()
+                  .textTheme
+                  .copyWith(
+                      headline6: TextStyle(
+                          fontFamily: 'OpenSans',
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold))
+                  .bodyText2,
+              titleTextStyle: ThemeData.light()
+                  .textTheme
+                  .copyWith(
+                      headline6: TextStyle(
+                          fontFamily: 'OpenSans',
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold))
+                  .headline6),
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple)
+              .copyWith(secondary: Colors.amber[700])),
     );
   }
 }
@@ -40,7 +50,29 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> _transactions = [];
+  final List<Transaction> _transactions = [
+    Transaction(
+        id: "t0",
+        title: "Conta Antuga",
+        value: 300,
+        date: DateTime.now().subtract(Duration(days: 33))),
+    Transaction(
+        id: "t1",
+        title: "Tenis Corrida",
+        value: 31.3,
+        date: DateTime.now().subtract(Duration(days: 3))),
+    Transaction(
+        id: "t2",
+        title: "Tenis Caminhada",
+        value: 13.3,
+        date: DateTime.now().subtract(Duration(days: 4)))
+  ];
+
+  List<Transaction> get _recentTransactions {
+    return _transactions.where((tr) {
+      return tr.date.isAfter(DateTime.now().subtract(Duration(days: 7)));
+    }).toList();
+  }
 
   _addTransaction(String title, double value) {
     final newTransaction = Transaction(
@@ -80,14 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-              width: double.infinity,
-              child: Card(
-                color: Colors.blue,
-                child: Text('Grafico'),
-                elevation: 5,
-              ),
-            ),
+            Chart(_recentTransactions),
             TransactionList(_transactions),
           ],
         ),
