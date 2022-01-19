@@ -32,9 +32,8 @@ class MyHomePage extends StatelessWidget {
             child: Text('Item 1 - pretty big!'),
             color: Colors.red,
           ),
-          Flexible(
+          Expanded(
             flex: 4,
-            fit: FlexFit.tight,
             child: Container(
               height: 100,
               child: Text('Item 2'),
