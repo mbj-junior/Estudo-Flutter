@@ -38,7 +38,7 @@ class ExpensesApp extends StatelessWidget {
                           fontSize: 20,
                           fontWeight: FontWeight.bold))
                   .headline6),
-          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple)
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.deepOrange)
               .copyWith(secondary: Colors.amber[700])),
     );
   }
