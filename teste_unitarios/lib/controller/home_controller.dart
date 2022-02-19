@@ -6,7 +6,7 @@ abstract class IHomeController {
 }
 
 class HomeController implements IHomeController {
-  IHomeRepository _repository;
+  final IHomeRepository _repository;
 
   HomeController(this._repository);
 
