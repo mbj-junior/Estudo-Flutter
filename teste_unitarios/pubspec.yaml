@@ -8,6 +8,14 @@ version: 1.0.0+1
 environment:
   sdk: ">=2.16.1 <3.0.0"
 
+vars:
+  coverage_info: coverage/lcov.info
+  ignore_files: '**/*.g.dart' 
+scripts:
+  auto_format: dartfmt -w .
+  test: flutter test --coverage test/
+  gen_coverage: lcov --remove $coverage_info $ignore_files -o $coverage_info & genhtml $coverage_info -o coverage/html
+
 dependencies:
   flutter:
     sdk: flutter

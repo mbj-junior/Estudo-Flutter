@@ -1,5 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:teste_unitarios/repository/home_repository.dart';
+
 import 'view/home_page.dart';
+import 'package:flutter/material.dart';
+import 'package:teste_unitarios/controller/home_controller.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +19,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const HomePage(),
+      home: HomePage(controller: HomeController(HomeRepository())),
     );
   }
 }

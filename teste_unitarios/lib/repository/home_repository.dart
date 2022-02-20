@@ -6,19 +6,16 @@ abstract class IHomeRepository {
 }
 
 class HomeRepository implements IHomeRepository {
-  final currentIndexKey = 'currentIndex';
-
+  final currentIndexKey = 'currenIndex';
   @override
   Future<int> readCurrentIndex() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
     return prefs.getInt(currentIndexKey) ?? 0;
   }
 
   @override
   Future<void> saveCurrentIndex(int currentIndex) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
     prefs.setInt(currentIndexKey, currentIndex);
   }
 }

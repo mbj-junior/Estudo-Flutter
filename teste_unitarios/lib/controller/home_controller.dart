@@ -1,8 +1,9 @@
-import '../repository/home_repository.dart';
+import 'package:teste_unitarios/repository/home_repository.dart';
 
 abstract class IHomeController {
-  Future<int> get currentIndex;
-  Future<void> setCurrentIndex(int newIndex);
+  Future<int?>? get currentIndex;
+
+  Future<void>? setCurrentIndex(int newIndex);
 }
 
 class HomeController implements IHomeController {
