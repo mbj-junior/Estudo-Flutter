@@ -5,6 +5,7 @@ import 'package:teste_unitarios/repository/home_repository.dart';
 
 class HomeRepositoryMock extends Mock implements IHomeRepository {}
 
+
 void main() {
   late IHomeController controller;
   late IHomeRepository repository;
