@@ -1,5 +1,6 @@
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
+import 'adaptive_button.dart';
 
 class TransactionForm extends StatefulWidget {
   final void Function(String, double, DateTime) onSubmit;
@@ -88,15 +89,8 @@ class _TransactionFormState extends State<TransactionForm> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  TextButton(
-                    child: Text(
-                      'Nova Transação',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    style: TextButton.styleFrom(
-                        backgroundColor: Theme.of(context).primaryColor),
-                    onPressed: _submitForm,
-                  ),
+                  AdaptativeButton(
+                      label: 'Nova Transação', onPressed: _submitForm)
                 ],
               )
             ],
