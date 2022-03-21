@@ -1,4 +1,4 @@
-name: shop
+name: todo_amplify
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -38,8 +38,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  provider: ^5.0.0
-  intl: ^0.17.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
