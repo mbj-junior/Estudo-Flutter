@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop/models/product.dart';
+import 'package:shop/pages/product_detail_page.dart';
 
 class ProductItem extends StatelessWidget {
   final Product product;
@@ -8,9 +9,15 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridTile(
-      child: Image.network(
-        product.imageUrl,
-        fit: BoxFit.cover,
+      child: GestureDetector(
+        child: Image.network(
+          product.imageUrl,
+          fit: BoxFit.cover,
+        ),
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: ((context) => ProductDetailPage(product: product))));
+        },
       ),
       footer: GridTileBar(
         leading: IconButton(
