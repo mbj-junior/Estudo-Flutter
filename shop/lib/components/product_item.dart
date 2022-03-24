@@ -13,14 +13,21 @@ class ProductItem extends StatelessWidget {
         fit: BoxFit.cover,
       ),
       footer: GridTileBar(
-        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.favorite)),
+        leading: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.favorite),
+          color: Theme.of(context).colorScheme.secondary,
+        ),
         backgroundColor: Colors.black54,
         title: Text(
           product.title,
           textAlign: TextAlign.center,
         ),
-        trailing:
-            IconButton(onPressed: () {}, icon: const Icon(Icons.shopping_cart)),
+        trailing: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.shopping_cart),
+          color: Theme.of(context).colorScheme.secondary,
+        ),
       ),
     );
   }
