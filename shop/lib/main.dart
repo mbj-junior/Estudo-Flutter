@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shop/pages/product_detail_page.dart';
+import 'package:shop/pages/counter_page.dart';
+// import 'package:shop/pages/product_detail_page.dart';
 import 'package:shop/pages/produts_overview_page.dart';
+import 'package:shop/providers/counter.dart';
 import 'package:shop/utils/app_routes.dart';
 
 void main() {
@@ -12,18 +14,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple)
-            .copyWith(secondary: Colors.red),
-        fontFamily: 'Lato',
+    return CounterProvider(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple)
+              .copyWith(secondary: Colors.red),
+          fontFamily: 'Lato',
+        ),
+        home: ProductOverviewPage(),
+        routes: {
+          AppRoutes.productDetail: ((context) => const CounterPage())
+          // AppRoutes.productDetail: ((context) => const ProductDetailPage())
+        },
       ),
-      home: ProductOverviewPage(),
-      routes: {
-        AppRoutes.productDetail: ((context) => const ProductDetailPage())
-      },
     );
   }
 }
