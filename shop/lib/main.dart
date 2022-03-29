@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create:(_) => ProductList(),
-      
+
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
               .copyWith(secondary: Colors.red),
           fontFamily: 'Lato',
         ),
-        home: ProductOverviewPage(),
+        home: const ProductOverviewPage(),
         routes: {
           AppRoutes.productDetail: ((context) => const ProductDetailPage())
         },
