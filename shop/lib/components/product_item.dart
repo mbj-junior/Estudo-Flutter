@@ -8,7 +8,8 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final product = Provider.of<Product>(context);
+    final product = Provider.of<Product>(context, listen: false);
+
     return GridTile(
       child: GestureDetector(
         child: Image.network(
@@ -21,13 +22,15 @@ class ProductItem extends StatelessWidget {
         },
       ),
       footer: GridTileBar(
-        leading: IconButton(
-          onPressed: () {
-            product.toggleFavorite();
-          },
-          icon:
-              Icon(product.isFavorite ? Icons.favorite : Icons.favorite_border),
-          color: Theme.of(context).colorScheme.secondary,
+        leading: Consumer<Product>(
+          builder: (context, product, child) => IconButton(
+            onPressed: () {
+              product.toggleFavorite();
+            },
+            icon: Icon(
+                product.isFavorite ? Icons.favorite : Icons.favorite_border),
+            color: Colors.red,
+          ),
         ),
         backgroundColor: Colors.black54,
         title: Text(
