@@ -1,0 +1,5 @@
+{   
+    "tela":{ "teste" : "Tela Você apertou o botão tantas vezes:"},
+    "push-text" : "Has pulsado el botón tantas veces:",
+    "welcome-text": "Bem-vindo, %s"
+}
