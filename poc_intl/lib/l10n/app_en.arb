@@ -1,0 +1,8 @@
+{
+  "language": "enlish",
+  "title": "Aplicativo em ingles",
+  "helloWorld": "Hello World",
+  "@helloWorld": {
+    "description": "Hello, Subscribe the Daves Tec"
+  }
+}
