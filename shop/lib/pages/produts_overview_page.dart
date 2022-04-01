@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shop/models/product_list.dart';
 import 'package:shop/components/product_grid.dart';
 
 enum FilterOptions { favorite, all }
@@ -8,6 +10,7 @@ class ProductOverviewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ProductList>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Minha Loja'),
@@ -24,8 +27,12 @@ class ProductOverviewPage extends StatelessWidget {
                 value: FilterOptions.all,
               ),
             ],
-            onSelected: (FilterOptions selectValkue) {
-              debugPrint(selectValkue.name.toString());
+            onSelected: (FilterOptions selectValue) {
+              if (selectValue == FilterOptions.favorite) {
+                provider.showfavoriteOnly();
+              } else {
+                provider.showAll();
+              }
             },
           )
         ],
