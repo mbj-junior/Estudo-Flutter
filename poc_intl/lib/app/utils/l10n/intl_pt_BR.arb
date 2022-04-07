@@ -1,0 +1,12 @@
+{
+  "@@locale": "pt-BR",
+  "@helloWorld": {
+    "description": "Hello, Subscribe the Daves Tec"
+  },
+  "@page_home_test": {
+    "description": "Pagina"
+  },
+  "helloWorld": "Olá Mundkkinho",
+  "language": "português",
+  "mundo": "mundinho"
+}

@@ -1,8 +1,12 @@
 {
+  "@@locale": "en",
   "@helloWorld": {
     "description": "Hello, Subscribe the Daves Tec"
   },
+  "@page_home_test": {
+    "description": "Pagina"
+  },
   "helloWorld": "Hello World",
   "language": "enlish",
-  "mundo": "hord"
+  "mundo": "word"
 }

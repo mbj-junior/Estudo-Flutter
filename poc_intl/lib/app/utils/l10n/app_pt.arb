@@ -1,7 +1,5 @@
 {
+  "helloWorld": "Olá Mundkkinho",
   "language": "português",
-  "title": "Aplicativo em portuges",
-  "helloWorld": "Olá Mundkkinho"
-  
-  }
-
+  "mundo": "mundo"
+}
