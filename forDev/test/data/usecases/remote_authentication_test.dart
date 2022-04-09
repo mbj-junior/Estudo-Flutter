@@ -32,6 +32,9 @@ void main() {
 
   test('Should call HttpClient with csorrect values', () async {
     sut.auth();
-    verify(httpClient.request(url: url, method: 'post'));
+    verify(httpClient.request(
+      url: url,
+      method: 'post',
+    ));
   });
 }
