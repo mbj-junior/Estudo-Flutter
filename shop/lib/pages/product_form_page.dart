@@ -14,6 +14,15 @@ class _ProductFormPageState extends State<ProductFormPage> {
       appBar: AppBar(
         title: const Text("Formulário de Produto"),
       ),
+      body: Form(
+          child: ListView(
+        children: [
+          TextFormField(
+            decoration: const InputDecoration(labelText: "nome"),
+            textInputAction: TextInputAction.next,
+          )
+        ],
+      )),
     );
   }
 }
