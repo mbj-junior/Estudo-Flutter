@@ -13,10 +13,14 @@ class ProductItem extends StatelessWidget {
     return ListTile(
       leading: CircleAvatar(backgroundImage: NetworkImage(product.imageUrl)),
       title: Text(product.name),
-      trailing: Container(
+      trailing: SizedBox(
         width: 100,
         child: Row(children: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.edit)),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.edit),
+            color: Colors.purple,
+          ),
           IconButton(
             onPressed: () {},
             icon: const Icon(Icons.delete),
