@@ -12,7 +12,7 @@ class ProductList with ChangeNotifier {
     }
     return [..._items];
   }
- 
+
   void showfavoriteOnly() {
     _showFavoriteOnly = true;
     notifyListeners();
@@ -26,5 +26,9 @@ class ProductList with ChangeNotifier {
   void addProduct(Product product) {
     _items.add(product);
     notifyListeners();
+  }
+
+  int get itemsCounts {
+    return _items.length;
   }
 }
