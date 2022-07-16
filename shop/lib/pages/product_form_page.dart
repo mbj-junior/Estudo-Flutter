@@ -20,6 +20,11 @@ class _ProductFormPageState extends State<ProductFormPage> {
           TextFormField(
             decoration: const InputDecoration(labelText: "nome"),
             textInputAction: TextInputAction.next,
+          ),
+          TextFormField(
+            decoration: const InputDecoration(labelText: "preço"),
+            textInputAction: TextInputAction.next,
+            keyboardType: const TextInputType.numberWithOptions(decimal: true),
           )
         ],
       )),
