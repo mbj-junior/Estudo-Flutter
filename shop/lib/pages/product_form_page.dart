@@ -1,6 +1,4 @@
-import 'dart:ffi';
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:shop/models/product.dart';
 
@@ -39,6 +37,12 @@ class _ProductFormPageState extends State<ProductFormPage> {
   }
 
   void submitForm() {
+    final isValid = _formKey.currentState?.validate() ?? false;
+
+    if (!isValid) {
+      return;
+    }
+
     _formKey.currentState?.save();
     final newProduct = Product(
         id: Random().nextDouble().toString(),
@@ -46,9 +50,9 @@ class _ProductFormPageState extends State<ProductFormPage> {
         description: _formData['description'] as String,
         price: _formData['price'] as double,
         imageUrl: _formData['imageUrl'] as String);
-    print(newProduct.id);
-    print(newProduct.name);
-    print(newProduct.price);
+    debugPrint(newProduct.id);
+    debugPrint(newProduct.name);
+    debugPrint(newProduct.price.toString());
   }
 
   @override
@@ -76,6 +80,17 @@ class _ProductFormPageState extends State<ProductFormPage> {
                     FocusScope.of(context).requestFocus(_priceFocus);
                   },
                   onSaved: (name) => _formData['name'] = name ?? "",
+                  validator: (_name) {
+                    final name = _name ?? "";
+                    if (name.trim().isEmpty) {
+                      return "Nome é obrigatório";
+                    }
+                    if (name.trim().length < 3) {
+                      return "Minimo de 3 letras";
+                    }
+
+                    return null;
+                  },
                 ),
                 TextFormField(
                   decoration: const InputDecoration(labelText: "Preço"),
