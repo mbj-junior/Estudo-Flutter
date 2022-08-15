@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:shop/models/product.dart';
 import 'package:shop/data/dummy_data.dart';
@@ -27,6 +28,18 @@ class ProductList with ChangeNotifier {
     _items.add(product);
     notifyListeners();
   }
+  void addProductFromData(Map<String, Object> data) {
+    final newProduct = Product(
+      id: Random().nextDouble().toString(),
+      name: data['name'] as String,
+      description: data['description'] as String,
+      price: data['price'] as double,
+      imageUrl: data['imageUrl'] as String,
+    );
+    addProduct(newProduct);
+  }
+
+
 
   int get itemsCounts {
     return _items.length;
