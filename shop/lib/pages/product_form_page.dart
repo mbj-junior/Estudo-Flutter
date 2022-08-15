@@ -36,6 +36,15 @@ class _ProductFormPageState extends State<ProductFormPage> {
     setState(() {});
   }
 
+  bool isValidImageUrl(String url) {
+    bool isValidUrl = Uri.tryParse(url)?.hasAbsolutePath ?? false;
+    bool endsWithFile = url.toLowerCase().endsWith(".jpg") ||
+        url.toLowerCase().endsWith(".png") ||
+        url.toLowerCase().endsWith(".jpeg");
+
+    return isValidUrl && endsWithFile;
+  }
+
   void submitForm() {
     final isValid = _formKey.currentState?.validate() ?? false;
 
@@ -103,6 +112,15 @@ class _ProductFormPageState extends State<ProductFormPage> {
                   },
                   onSaved: (price) =>
                       _formData['price'] = double.parse(price ?? "0"),
+                  validator: (_price) {
+                    final String priceString = _price ?? "";
+                    final double price = double.tryParse(priceString) ?? -1;
+
+                    if (price <= 0) {
+                      return "Informe um preço válido";
+                    }
+                    return null;
+                  },
                 ),
                 TextFormField(
                   decoration: const InputDecoration(labelText: "Descição"),
@@ -111,6 +129,17 @@ class _ProductFormPageState extends State<ProductFormPage> {
                   maxLines: 3,
                   onSaved: (description) =>
                       _formData['description'] = description ?? "",
+                  validator: (_description) {
+                    final description = _description ?? "";
+                    if (description.trim().isEmpty) {
+                      return "Descrição é obrigatório";
+                    }
+                    if (description.trim().length < 10) {
+                      return "Minimo de 10 letras";
+                    }
+
+                    return null;
+                  },
                 ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -126,6 +155,13 @@ class _ProductFormPageState extends State<ProductFormPage> {
                         onFieldSubmitted: (_) => submitForm(),
                         onSaved: (imageUrl) =>
                             _formData['imageUrl'] = imageUrl ?? "",
+                        validator: (_imageUrl) {
+                          final imageUrl = _imageUrl ?? "";
+                          if (!isValidImageUrl(imageUrl)) {
+                            return "Url invalida";
+                          }
+                          return null;
+                        },
                       ),
                     ),
                     Container(
