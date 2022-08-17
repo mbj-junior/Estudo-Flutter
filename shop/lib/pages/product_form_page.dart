@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop/models/product.dart';
 import 'package:shop/models/product_list.dart';
 import 'package:provider/provider.dart';
 
@@ -24,6 +25,26 @@ class _ProductFormPageState extends State<ProductFormPage> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    if (_formData.isEmpty) {
+      final arg = ModalRoute.of(context)?.settings.arguments;
+
+      if (arg != null) {
+        final product = arg as Product;
+        _formData['id'] = product.id;
+        _formData['name'] = product.name;
+        _formData['price'] = product.price;
+        _formData['description'] = product.description;
+        _formData['imageUrl'] = product.imageUrl;
+
+        _imageUrlController.text = product.imageUrl;
+      }
+    }
+  }
+
+  @override
   void dispose() {
     super.dispose();
     _priceFocus.dispose();
@@ -45,7 +66,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
     return isValidUrl && endsWithFile;
   }
 
-  void submitForm() {
+  void _submitForm() {
     final isValid = _formKey.currentState?.validate() ?? false;
 
     if (!isValid) {
@@ -56,7 +77,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
     Provider.of<ProductList>(
       context,
       listen: false,
-    ).addProductFromData(_formData);
+    ).saveProduct(_formData);
     Navigator.of(context).pop();
   }
 
@@ -67,7 +88,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
         title: const Text("Formulário de Produto"),
         actions: [
           IconButton(
-            onPressed: submitForm,
+            onPressed: _submitForm,
             icon: const Icon(Icons.save),
           )
         ],
@@ -79,6 +100,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
             child: ListView(
               children: [
                 TextFormField(
+                  initialValue: (_formData['name'] ?? '') as String,
                   decoration: const InputDecoration(labelText: "Nome"),
                   textInputAction: TextInputAction.next,
                   onFieldSubmitted: (_) {
@@ -98,6 +120,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                   },
                 ),
                 TextFormField(
+                  initialValue: _formData['price']?.toString(),
                   decoration: const InputDecoration(labelText: "Preço"),
                   textInputAction: TextInputAction.next,
                   focusNode: _priceFocus,
@@ -119,6 +142,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                   },
                 ),
                 TextFormField(
+                  initialValue: _formData['description']?.toString(),
                   decoration: const InputDecoration(labelText: "Descição"),
                   focusNode: _descriptionFocus,
                   keyboardType: TextInputType.multiline,
@@ -148,7 +172,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                         keyboardType: TextInputType.url,
                         textInputAction: TextInputAction.done,
                         controller: _imageUrlController,
-                        onFieldSubmitted: (_) => submitForm(),
+                        onFieldSubmitted: (_) => _submitForm(),
                         onSaved: (imageUrl) =>
                             _formData['imageUrl'] = imageUrl ?? "",
                         validator: (_imageUrl) {
