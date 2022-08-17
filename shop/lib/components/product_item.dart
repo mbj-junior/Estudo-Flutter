@@ -31,10 +31,34 @@ class ProductItem extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {
-              Provider.of<ProductList>(
-                context,
-                listen: false,
-              ).removeProduct(product);
+              showDialog<bool>(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: const Text("Excluir produto"),
+                  content: const Text("Tem certeza"),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pop(false),
+                      child: const Text("Não"),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop(true);
+                      },
+                      child: const Text("Sim"),
+                    ),
+                  ],
+                ),
+              ).then(
+                (value) {
+                  if (value ?? false) {
+                    Provider.of<ProductList>(
+                      context,
+                      listen: false,
+                    ).removeProduct(product);
+                  }
+                },
+              );
             },
             icon: const Icon(Icons.delete),
             color: Colors.red,
