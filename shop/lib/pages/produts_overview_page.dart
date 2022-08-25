@@ -17,13 +17,20 @@ class ProductOverviewPage extends StatefulWidget {
 }
 
 class _ProductOverviewPageState extends State<ProductOverviewPage> {
+  bool _showFavoriteOnly = false;
+  bool _isLoading = true;
+
   @override
   void initState() {
     super.initState();
     Provider.of<ProductList>(
       context,
       listen: false,
-    ).loadProducts();
+    ).loadProducts().then((value) {
+      setState(() {
+        _isLoading = false;
+      });
+    });
   }
 
   @override
@@ -47,9 +54,9 @@ class _ProductOverviewPageState extends State<ProductOverviewPage> {
             ],
             onSelected: (FilterOptions selectValue) {
               if (selectValue == FilterOptions.favorite) {
-                provider.showfavoriteOnly();
+                _showFavoriteOnly = true;
               } else {
-                provider.showAll();
+                _showFavoriteOnly = false;
               }
             },
           ),
@@ -66,7 +73,9 @@ class _ProductOverviewPageState extends State<ProductOverviewPage> {
           ),
         ],
       ),
-      body: const ProductGrid(),
+      body: _isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : ProductGrid(_showFavoriteOnly),
       drawer: const AppDrawer(),
     );
   }
