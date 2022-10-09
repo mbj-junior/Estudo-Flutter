@@ -5,8 +5,7 @@ import 'package:shop/models/product.dart';
 import 'package:http/http.dart' as http;
 
 class ProductList with ChangeNotifier {
-  final _url =
-      'https://shop-cod3r-ff241-default-rtdb.firebaseio.com/products.json';
+  final _url = 'https://shop-cod4r-default-rtdb.firebaseio.com/products.json';
   final List<Product> _items = [];
   List<Product> get items => [..._items];
 

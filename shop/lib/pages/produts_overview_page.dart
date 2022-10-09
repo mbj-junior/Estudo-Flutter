@@ -26,16 +26,19 @@ class _ProductOverviewPageState extends State<ProductOverviewPage> {
     Provider.of<ProductList>(
       context,
       listen: false,
-    ).loadProducts().then((value) {
-      setState(() {
-        _isLoading = false;
-      });
-    });
+    ).loadProducts().then(
+      (value) {
+        setState(
+          () {
+            _isLoading = false;
+          },
+        );
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ProductList>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Minha Loja'),
