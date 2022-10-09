@@ -116,7 +116,7 @@ class ProductList with ChangeNotifier {
       notifyListeners();
 
       final response = await http.delete(
-        Uri.parse('$_baseUrl/${product.id}'),
+        Uri.parse('$_baseUrl/${product.id}.json'),
       );
 
       if (response.statusCode >= 400) {
