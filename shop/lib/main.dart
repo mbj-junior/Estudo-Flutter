@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shop/models/cart.dart';
 import 'package:shop/models/order_list.dart';
 import 'package:shop/models/product_list.dart';
+import 'package:shop/pages/auth_page.dart';
 import 'package:shop/pages/cart_page.dart';
 import 'package:shop/pages/orders_page.dart';
 import 'package:shop/pages/product_detail_page.dart';
@@ -41,11 +42,12 @@ class MyApp extends StatelessWidget {
           fontFamily: 'Lato',
         ),
         routes: {
-          AppRoutes.home: ((context) => const ProductOverviewPage()),
-          AppRoutes.productDetail: ((context) => const ProductDetailPage()),
+          AppRoutes.auth: ((context) => const AuthPage()),
           AppRoutes.cart: ((context) => const CartPage()),
+          AppRoutes.home: ((context) => const ProductOverviewPage()),
           AppRoutes.orders: ((context) => const OrdersPage()),
           AppRoutes.products: ((context) => const ProductsPage()),
+          AppRoutes.productDetail: ((context) => const ProductDetailPage()),
           AppRoutes.productForm: ((context) => const ProductFormPage())
         },
       ),
