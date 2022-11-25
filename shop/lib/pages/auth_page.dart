@@ -21,7 +21,7 @@ class AuthPage extends StatelessWidget {
               ),
             ),
           ),
-          Container(
+          SizedBox(
             width: double.infinity,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
