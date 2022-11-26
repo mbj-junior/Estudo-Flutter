@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop/exceptions/auth_exception.dart';
 import 'package:shop/models/auth.dart';
 import 'package:provider/provider.dart';
 
@@ -33,6 +34,22 @@ class _AuthFormState extends State<AuthForm> {
     });
   }
 
+  void _showErrorDialog(String mensage) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text("Ocorreu um error"),
+        content: Text(mensage),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text("Fechar"),
+          )
+        ],
+      ),
+    );
+  }
+
   Future<void> _submit() async {
     final isValid = _formKey.currentState?.validate() ?? false;
     if (!isValid) {
@@ -42,15 +59,26 @@ class _AuthFormState extends State<AuthForm> {
 
     _formKey.currentState?.save();
     Auth auth = Provider.of(context, listen: false);
-    if (_isLogin()) {
-      await auth.signInWithPassword(
-        _authData['email']!,
-        _authData['password']!,
+
+    try {
+      if (_isLogin()) {
+        await auth.signInWithPassword(
+          _authData['email']!,
+          _authData['password']!,
+        );
+      } else {
+        await auth.signup(
+          _authData['email']!,
+          _authData['password']!,
+        );
+      }
+    } on AuthException catch (error) {
+      _showErrorDialog(
+        error.toString(),
       );
-    } else {
-      await auth.signup(
-        _authData['email']!,
-        _authData['password']!,
+    } catch (error) {
+      _showErrorDialog(
+        "Error inesperado",
       );
     }
 
@@ -137,8 +165,9 @@ class _AuthFormState extends State<AuthForm> {
               const Spacer(),
               TextButton(
                 onPressed: _switchAuthMode,
-                child:
-                    Text(_isLogin() ? "DESEJA REGISTRAR" : "JÁ POSSUI CONTA?"),
+                child: Text(
+                  _isLogin() ? "DESEJA REGISTRAR" : "JÁ POSSUI CONTA?",
+                ),
               ),
             ],
           ),
