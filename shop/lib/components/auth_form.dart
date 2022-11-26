@@ -11,13 +11,42 @@ class AuthForm extends StatefulWidget {
 
 class _AuthFormState extends State<AuthForm> {
   final _passwordController = TextEditingController();
-  final AuthMode _authMode = AuthMode.login;
+  final _formKey = GlobalKey<FormState>();
+  bool _isLoading = false;
+  AuthMode _authMode = AuthMode.login;
   final Map<String, String> _authData = {
     "email": "",
     "password": "",
   };
 
-  void _submit() {}
+  bool _isLogin() => _authMode == AuthMode.login;
+  bool _isSignup() => _authMode == AuthMode.signup;
+  void _switchAuthMode() {
+    setState(() {
+      if (_isLogin()) {
+        _authMode = AuthMode.signup;
+      } else {
+        _authMode = AuthMode.login;
+      }
+    });
+  }
+
+  void _submit() {
+    final isValid = _formKey.currentState?.validate() ?? false;
+    if (!isValid) {
+      return;
+    }
+    setState(() => _isLoading = true);
+
+    _formKey.currentState?.save();
+    if (_isLogin()) {
+      //Login
+    } else {
+      //Registrar
+    }
+
+    setState(() => _isLoading = false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +58,10 @@ class _AuthFormState extends State<AuthForm> {
       ),
       child: Container(
         padding: const EdgeInsets.all(16),
-        height: 320,
+        height: _isLogin() ? 310 : 400,
         width: size.width * 0.75,
         child: Form(
+          key: _formKey,
           child: Column(
             children: [
               TextFormField(
@@ -52,7 +82,7 @@ class _AuthFormState extends State<AuthForm> {
                 obscureText: true,
                 controller: _passwordController,
                 onSaved: (password) => _authData["password"] = password ?? "",
-                validator: _authMode == AuthMode.login
+                validator: _isLogin()
                     ? null
                     : (_password) {
                         final password = _password ?? "";
@@ -62,7 +92,7 @@ class _AuthFormState extends State<AuthForm> {
                         return null;
                       },
               ),
-              if (_authMode == AuthMode.signup)
+              if (_isSignup())
                 TextFormField(
                   decoration:
                       const InputDecoration(labelText: "Confirmar Senha"),
@@ -73,24 +103,33 @@ class _AuthFormState extends State<AuthForm> {
                     if (password != _passwordController.text) {
                       return "Senhas diferentes";
                     }
+                    return null;
                   },
                 ),
               const SizedBox(
                 height: 20,
               ),
-              ElevatedButton(
-                onPressed: _submit,
-                child:
-                    Text(_authMode == AuthMode.login ? "ENTRAR" : "REGISTRAR"),
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 30,
-                    vertical: 8,
+              if (_isLoading)
+                const CircularProgressIndicator()
+              else
+                ElevatedButton(
+                  onPressed: _submit,
+                  child: Text(_isLogin() ? "ENTRAR" : "REGISTRAR"),
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 30,
+                      vertical: 8,
+                    ),
                   ),
                 ),
+              const Spacer(),
+              TextButton(
+                onPressed: _switchAuthMode,
+                child:
+                    Text(_isLogin() ? "DESEJA REGISTRAR" : "JÁ POSSUI CONTA?"),
               ),
             ],
           ),
