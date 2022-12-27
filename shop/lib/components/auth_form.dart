@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shop/exceptions/auth_exception.dart';
 import 'package:shop/models/auth.dart';
-import 'package:provider/provider.dart';
 
 enum AuthMode { signup, login }
 
@@ -105,8 +105,8 @@ class _AuthFormState extends State<AuthForm> {
                 decoration: const InputDecoration(labelText: "E-mail"),
                 keyboardType: TextInputType.emailAddress,
                 onSaved: (email) => _authData["email"] = email ?? "",
-                validator: (_email) {
-                  final email = _email ?? "";
+                validator: (emailValidator) {
+                  final email = emailValidator ?? "";
                   if (email.trim().isEmpty || !email.contains("@")) {
                     return "Email invalido";
                   }
@@ -121,8 +121,8 @@ class _AuthFormState extends State<AuthForm> {
                 onSaved: (password) => _authData["password"] = password ?? "",
                 validator: _isLogin()
                     ? null
-                    : (_password) {
-                        final password = _password ?? "";
+                    : (passwordValidator) {
+                        final password = passwordValidator ?? "";
                         if (password.isEmpty || password.length < 5) {
                           return "Senha invalida";
                         }
@@ -135,8 +135,8 @@ class _AuthFormState extends State<AuthForm> {
                       const InputDecoration(labelText: "Confirmar Senha"),
                   keyboardType: TextInputType.emailAddress,
                   obscureText: true,
-                  validator: (_password) {
-                    final password = _password ?? "";
+                  validator: (passwordValidator) {
+                    final password = passwordValidator ?? "";
                     if (password != _passwordController.text) {
                       return "Senhas diferentes";
                     }
@@ -151,7 +151,6 @@ class _AuthFormState extends State<AuthForm> {
               else
                 ElevatedButton(
                   onPressed: _submit,
-                  child: Text(_isLogin() ? "ENTRAR" : "REGISTRAR"),
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
@@ -161,6 +160,7 @@ class _AuthFormState extends State<AuthForm> {
                       vertical: 8,
                     ),
                   ),
+                  child: Text(_isLogin() ? "ENTRAR" : "REGISTRAR"),
                 ),
               const Spacer(),
               TextButton(

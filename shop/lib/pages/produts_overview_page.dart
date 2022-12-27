@@ -13,10 +13,10 @@ class ProductOverviewPage extends StatefulWidget {
   const ProductOverviewPage({Key? key}) : super(key: key);
 
   @override
-  _ProductOverviewPageState createState() => _ProductOverviewPageState();
+  ProductOverviewPageState createState() => ProductOverviewPageState();
 }
 
-class _ProductOverviewPageState extends State<ProductOverviewPage> {
+class ProductOverviewPageState extends State<ProductOverviewPage> {
   bool _showFavoriteOnly = false;
   bool _isLoading = true;
 
@@ -47,12 +47,12 @@ class _ProductOverviewPageState extends State<ProductOverviewPage> {
             icon: const Icon(Icons.more_vert),
             itemBuilder: (_) => [
               const PopupMenuItem(
-                child: Text('Somente Favoritos'),
                 value: FilterOptions.favorite,
+                child: Text('Somente Favoritos'),
               ),
               const PopupMenuItem(
-                child: Text('Todos'),
                 value: FilterOptions.all,
+                child: Text('Todos'),
               ),
             ],
             onSelected: (FilterOptions selectValue) {
@@ -70,8 +70,8 @@ class _ProductOverviewPageState extends State<ProductOverviewPage> {
                 },
                 icon: const Icon(Icons.shopping_cart)),
             builder: (context, cart, child) => Badge(
-              child: child!,
               value: cart.itemsCount.toString(),
+              child: child!,
             ),
           ),
         ],

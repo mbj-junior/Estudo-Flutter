@@ -13,16 +13,6 @@ class ProductGridItem extends StatelessWidget {
     final cart = Provider.of<Cart>(context, listen: false);
 
     return GridTile(
-      child: GestureDetector(
-        child: Image.network(
-          product.imageUrl,
-          fit: BoxFit.cover,
-        ),
-        onTap: () {
-          Navigator.of(context)
-              .pushNamed(AppRoutes.productDetail, arguments: product);
-        },
-      ),
       footer: GridTileBar(
         leading: Consumer<Product>(
           builder: (context, product, child) => IconButton(
@@ -56,6 +46,16 @@ class ProductGridItem extends StatelessWidget {
           icon: const Icon(Icons.shopping_cart),
           color: Theme.of(context).colorScheme.secondary,
         ),
+      ),
+      child: GestureDetector(
+        child: Image.network(
+          product.imageUrl,
+          fit: BoxFit.cover,
+        ),
+        onTap: () {
+          Navigator.of(context)
+              .pushNamed(AppRoutes.productDetail, arguments: product);
+        },
       ),
     );
   }

@@ -66,10 +66,10 @@ class CartButton extends StatefulWidget {
   final Cart cart;
 
   @override
-  _CartButtonState createState() => _CartButtonState();
+  CartButtonState createState() => CartButtonState();
 }
 
-class _CartButtonState extends State<CartButton> {
+class CartButtonState extends State<CartButton> {
   bool _isLoading = false;
 
   @override
@@ -89,12 +89,12 @@ class _CartButtonState extends State<CartButton> {
                     widget.cart.clear();
                     setState(() => _isLoading = false);
                   },
-            child: const Text("COMPRAR"),
             style: TextButton.styleFrom(
               textStyle: const TextStyle(
                 color: Colors.purple,
               ),
             ),
+            child: const Text("COMPRAR"),
           );
   }
 }

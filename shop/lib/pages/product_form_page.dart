@@ -133,8 +133,8 @@ class _ProductFormPageState extends State<ProductFormPage> {
                           FocusScope.of(context).requestFocus(_priceFocus);
                         },
                         onSaved: (name) => _formData['name'] = name ?? "",
-                        validator: (_name) {
-                          final name = _name ?? "";
+                        validator: (nameValidator) {
+                          final name = nameValidator ?? "";
                           if (name.trim().isEmpty) {
                             return "Nome é obrigatório";
                           }
@@ -158,8 +158,8 @@ class _ProductFormPageState extends State<ProductFormPage> {
                         },
                         onSaved: (price) =>
                             _formData['price'] = double.parse(price ?? "0"),
-                        validator: (_price) {
-                          final String priceString = _price ?? "";
+                        validator: (priceValidator) {
+                          final String priceString = priceValidator ?? "";
                           final double price =
                               double.tryParse(priceString) ?? -1;
 
@@ -178,8 +178,8 @@ class _ProductFormPageState extends State<ProductFormPage> {
                         maxLines: 3,
                         onSaved: (description) =>
                             _formData['description'] = description ?? "",
-                        validator: (_description) {
-                          final description = _description ?? "";
+                        validator: (descriptionValidator) {
+                          final description = descriptionValidator ?? "";
                           if (description.trim().isEmpty) {
                             return "Descrição é obrigatório";
                           }
@@ -204,8 +204,8 @@ class _ProductFormPageState extends State<ProductFormPage> {
                               onFieldSubmitted: (_) => _submitForm(),
                               onSaved: (imageUrl) =>
                                   _formData['imageUrl'] = imageUrl ?? "",
-                              validator: (_imageUrl) {
-                                final imageUrl = _imageUrl ?? "";
+                              validator: (imageUrlValidator) {
+                                final imageUrl = imageUrlValidator ?? "";
                                 if (!isValidImageUrl(imageUrl)) {
                                   return "Url invalida";
                                 }
