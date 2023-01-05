@@ -1,9 +1,6 @@
-import 'package:forDev/domain/entities/account_entity.dart';
+import 'package:forDev/data/http/http_client.dart';
+import 'package:forDev/domain/usecases/authentication.dart';
 import 'package:meta/meta.dart';
-
-import '../../domain/usecases/authentication.dart';
-
-import '../http/http.dart';
 
 class RemoteAuthentication {
   final HttpClient httpClient;
