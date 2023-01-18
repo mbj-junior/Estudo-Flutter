@@ -1,4 +1,5 @@
 import 'package:TestForDev/data/http/http.dart';
+import 'package:TestForDev/domain/helpers/helpers.dart';
 import 'package:TestForDev/domain/usecases/usecases.dart';
 import 'package:flutter/material.dart';
 
@@ -10,11 +11,15 @@ class RemoteAuthentication {
 
   Future<void> auth(AuthenticationParams params) async {
     final body = RemoteAuthenticationParams.fromDomain(params).toJson();
-    await httpClient.request(
-      url: url,
-      method: "post",
-      body: body,
-    );
+    try {
+      await httpClient.request(
+        url: url,
+        method: "post",
+        body: body,
+      );
+    } on HttpError {
+      throw DomainError.unexpected;
+    }
   }
 }
 
