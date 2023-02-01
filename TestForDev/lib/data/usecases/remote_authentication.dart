@@ -5,7 +5,7 @@ import 'package:TestForDev/domain/helpers/helpers.dart';
 import 'package:TestForDev/domain/usecases/usecases.dart';
 import 'package:flutter/material.dart';
 
-class RemoteAuthentication {
+class RemoteAuthentication implements Authentication {
   final HttpClient httpClient;
   final String url;
 
