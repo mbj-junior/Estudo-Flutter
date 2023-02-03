@@ -3,7 +3,7 @@
 > ## Caso de sucesso
 1. ✅ Request com berto http válido (post)
 2. ✅ Passar nos headers o content type Json
-3. OK - 200 e resposta com dados
+3. ✅ OK - 200 e resposta com dados
 4. No content - 204 e resposta sem dados
 
 > ## Error
