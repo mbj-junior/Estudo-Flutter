@@ -4,8 +4,8 @@
 1. ✅ Request com berto http válido (post)
 2. ✅ Passar nos headers o content type Json
 3. ✅ Chamar request com body correto
-3. ✅ OK - 200 e resposta com dados
-4. ✅ No content - 204 e resposta sem dados
+3. OK - 200 e resposta com dados
+4. No content - 204 e resposta sem dados
 
 > ## Error
 1. Bad request - 400
