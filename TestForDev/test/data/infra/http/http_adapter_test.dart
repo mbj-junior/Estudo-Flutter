@@ -27,12 +27,15 @@ void main() {
   });
 
   group("post", () {
-    PostExpectation mockRequest() => when(
-        client.post(any, body: anyNamed("body"), headers: anyNamed('headers')));
+    PostExpectation mockRequest() =>
+        when(client.post(any, body: anyNamed("body"), headers: anyNamed('headers')));
 
-    void mockResponse(int statusCode,
-        {String body = '{"any_key":"any_value"}'}) {
+    void mockResponse(int statusCode, {String body = '{"any_key":"any_value"}'}) {
       mockRequest().thenAnswer((_) async => Response(body, statusCode));
+    }
+
+    void mockError() {
+      mockRequest().thenThrow(Exception());
     }
 
     setUp(() {
@@ -86,8 +89,7 @@ void main() {
       expect(response, null);
     });
 
-    test("Shoul return null if post returns 204 with data with no data",
-        () async {
+    test("Shoul return null if post returns 204 with data with no data", () async {
       mockResponse(204);
 
       final response = await sut.request(url: url, method: "post");
@@ -95,8 +97,7 @@ void main() {
       expect(response, null);
     });
 
-    test("Shoul return BadRequestError if post returns 400 with no data",
-        () async {
+    test("Shoul return BadRequestError if post returns 400 with no data", () async {
       mockResponse(400, body: "");
 
       final future = sut.request(url: url, method: "post");

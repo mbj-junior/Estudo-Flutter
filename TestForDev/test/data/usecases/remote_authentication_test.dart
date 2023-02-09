@@ -39,8 +39,7 @@ void main() {
     httpClient = HttpClienteSpy();
     url = faker.internet.httpUrl();
     sut = RemoteAuthentication(httpClient: httpClient, url: url);
-    params = AuthenticationParams(
-        email: faker.internet.email(), secret: faker.internet.password());
+    params = AuthenticationParams(email: faker.internet.email(), secret: faker.internet.password());
     mockHttpData(mockValidData());
   });
 
@@ -48,9 +47,7 @@ void main() {
     await sut.auth(params);
 
     verify(httpClient.request(
-        url: url,
-        method: "post",
-        body: {"email": params.email, "password": params.secret}));
+        url: url, method: "post", body: {"email": params.email, "password": params.secret}));
   });
 
   test("Should throw UnexpectedError if HttpClient returns 400", () async {
@@ -77,8 +74,7 @@ void main() {
     expect(future, throwsA(DomainError.unexpected));
   });
 
-  test("Should throw InvalidCredentialsError if HttpClient returns 401",
-      () async {
+  test("Should throw InvalidCredentialsError if HttpClient returns 401", () async {
     mockHttpError(HttpError.unauthorized);
 
     final future = sut.auth(params);
@@ -95,9 +91,7 @@ void main() {
     expect(account.token, validData['accessToken']);
   });
 
-  test(
-      "Should throw UnexpectedError if HttpClient returns 200 with invalid data",
-      () async {
+  test("Should throw UnexpectedError if HttpClient returns 200 with invalid data", () async {
     mockHttpData({"invalid_key": "invalid_value"});
 
     final future = sut.auth(params);
