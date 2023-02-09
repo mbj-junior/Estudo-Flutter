@@ -144,5 +144,13 @@ void main() {
 
       expect(future, throwsA(HttpError.serverError));
     });
+
+    test("Shoul return ServerError if post throws", () async {
+      mockError();
+
+      final future = sut.request(url: url, method: "post");
+
+      expect(future, throwsA(HttpError.serverError));
+    });
   });
 }
