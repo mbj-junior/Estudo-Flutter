@@ -1,5 +1,7 @@
-import 'package:have_the_same_letters/have_the_same_letters.dart' as have_the_same_letters;
+// Verifica duas palavras se tem os mesmo caracteres na sua estrutura
+
+import 'package:have_the_same_letters/compare_words.dart';
 
 void main(List<String> arguments) {
-  print('Hello world: ${have_the_same_letters.calculate()}!');
+  print("palavras com as mesma letra? - ${compareWords(arguments)}");
 }
