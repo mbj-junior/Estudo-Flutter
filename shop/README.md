@@ -1,6 +1,24 @@
-# shop
+# photos_album_app
 
-A new Flutter project.
+This project is a photos album mobile application and it uses the public api [xyz](http://todo.com.br) for data requests consumption. 
+
+The app was developed with the following functionalities and screams:
+- login;
+- user's albums preview;
+- albums photos preview;
+- photo comments preview;
+- app settings.
+
+
+## Requirements
+
+- Flutter - version >=3.0.5 / more information on [Flutter Documentation](https://docs.flutter.dev/get-started/install)
+
+### Using mobile emulator on desktop
+- toDo
+
+### Using a smartphone
+- 
 
 ## Getting Started
 
