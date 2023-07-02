@@ -15,7 +15,11 @@ void main() {
     expect(compareListInt([1, 2, 2], [1, 2, 3]), false);
   });
 
-  test('Must return false to diferent length', () {
+  test('Must return false to diferent length to first list', () {
+    expect(compareListInt([1, 2, 3, 4], [3, 2, 1]), false);
+  });
+
+  test('Must return false to diferent length to second list', () {
     expect(compareListInt([1, 2, 3], [3, 2, 1, 4]), false);
   });
 }
