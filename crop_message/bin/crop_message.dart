@@ -10,7 +10,7 @@ void main(List<String> arguments) async {
   }
 
   while (kIn == null || kIn.isEmpty) {
-    stdout.write("Digite o ponto de corte: ");
+    stdout.write("Digite o ponto de corte de 1 a 500: ");
     kIn = stdin.readLineSync();
   }
 
@@ -23,6 +23,10 @@ String solution(String message, int k) {
   int count = 0;
 
   List<String> finalMessage = [];
+
+  if (k > message.length) {
+    return message;
+  }
 
   for (var i = 0; count <= k; i++) {
     finalMessage.add(messageCrop[i]);
