@@ -4,12 +4,12 @@ void main(List<String> arguments) async {
   String? messageIn;
   String? kIn;
 
-  while (messageIn == null) {
+  while (messageIn == null || messageIn.isEmpty) {
     stdout.write("Digite a mensagem: ");
     messageIn = stdin.readLineSync();
   }
 
-  while (kIn == null) {
+  while (kIn == null || kIn.isEmpty) {
     stdout.write("Digite o ponto de corte: ");
     kIn = stdin.readLineSync();
   }
