@@ -1,6 +1,5 @@
+import 'package:compare_arrays/compare_arrays.dart';
 import 'package:test/test.dart';
-
-import '../bin/compare_arrays.dart';
 
 void main() {
   test('Must return true to equal list sorted', () {
