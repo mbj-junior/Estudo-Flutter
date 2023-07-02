@@ -7,16 +7,15 @@ void main(List<String> arguments) {
 }
 
 bool compareListInt(List<int> firstList, List<int> secondList) {
-  int countFistList = 0;
-  int countSecondList = 0;
+  int count = 0;
   bool isEqual = false;
 
   if (firstList.length == secondList.length) {
     for (int i = 0; i < firstList.length; i++) {
-      countFistList += firstList[i];
-      countSecondList += secondList[i];
+      count += firstList[i];
+      count -= secondList[i];
     }
-    isEqual = countFistList == countSecondList;
+    isEqual = count == 0;
   }
 
   return isEqual;
