@@ -10,13 +10,14 @@ void main(List<String> arguments) {
   final stopwatch = Stopwatch()..start();
   print(completeArray(example1));
   print(completeArray(example2));
+  print(completeArray(example2));
   stopwatch.stop();
   print(stopwatch.elapsedTicks);
 }
 
 int completeArray(List<int> listIn) {
-  int count = 0; // 12
-  int acumulador = 0; // 15
+  int count = 0;
+  int acumulador = 0;
 
   for (int i = 0; i < listIn.length; i++) {
     count += listIn[i];
@@ -25,9 +26,6 @@ int completeArray(List<int> listIn) {
   for (var i = 0; i < listIn.length + 1; i++) {
     acumulador += i + 1;
   }
-
-  print(count);
-  print(acumulador);
 
   return acumulador - count;
 }
